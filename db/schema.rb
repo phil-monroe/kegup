@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140130192241) do
+ActiveRecord::Schema.define(version: 20140130194714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20140130192241) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "kegs", force: true do |t|
+    t.integer  "beer_id"
+    t.integer  "org_id"
+    t.datetime "tapped_date"
+    t.datetime "finished_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "kegs", ["beer_id"], name: "index_kegs_on_beer_id", using: :btree
+  add_index "kegs", ["org_id"], name: "index_kegs_on_org_id", using: :btree
 
   create_table "org_beer_selections", force: true do |t|
     t.integer  "org_id"
@@ -41,5 +53,16 @@ ActiveRecord::Schema.define(version: 20140130192241) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "taps", force: true do |t|
+    t.integer  "org_id"
+    t.string   "name"
+    t.integer  "keg_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "taps", ["keg_id"], name: "index_taps_on_keg_id", using: :btree
+  add_index "taps", ["org_id"], name: "index_taps_on_org_id", using: :btree
 
 end
