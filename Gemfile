@@ -27,3 +27,19 @@ end
 group :production do
   gem 'rails_12factor'
 end
+
+
+group :development, :test do
+  gem 'pry-rails'
+  gem 'rspec-rails'
+end
+
+
+
+group :test do
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'factory_girl'
+end
