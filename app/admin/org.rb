@@ -20,6 +20,24 @@ ActiveAdmin.register Org do
         column(:abv) { |beer| "#{beer.abv}%"}
       end
     end
+
+    panel "Taps" do
+      table_for org.taps do
+        column(:id)
+        column(:name)
+        column(:keg) { |tap| link_to(tap.keg.beer.name, admin_keg_path(tap.keg) )  if tap.keg.present? }
+      end
+    end
+
+    panel "Kegs" do
+      table_for org.kegs do
+        column(:id)
+        column(:beer)
+        column(:on_tap) { |keg| keg.current_tap.present?.to_s  }
+      end
+    end
+
+
   end
 
   form do |f|
@@ -32,6 +50,21 @@ ActiveAdmin.register Org do
     f.inputs "Available Beers" do
       f.has_many :org_beer_selections, allow_destroy: true do |bf|
         bf.input :beer
+      end
+    end
+
+    f.inputs "Taps" do
+      f.has_many :taps, allow_destroy: true do |bf|
+        bf.input :name
+        bf.input :keg
+      end
+    end
+
+    f.inputs "Kegs" do
+      f.has_many :kegs, allow_destroy: true do |bf|
+        bf.input :beer
+        bf.input :tapped_date
+        bf.input :finished_date
       end
     end
 
