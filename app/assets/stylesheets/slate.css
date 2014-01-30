@@ -8,3 +8,12 @@
 body {
   padding-top: 50px;
 }
+
+.beer-table td.mid {
+  vertical-align: middle;
+}
+
+.on-tap.panel .panel-heading {
+  padding-top: 1em;
+
+}

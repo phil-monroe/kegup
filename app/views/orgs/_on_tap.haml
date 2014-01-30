@@ -1,0 +1,40 @@
+%h3 On Tap
+%hr
+- @org.taps.each_slice(3) do |taps|
+  .row
+  - taps.each do |tap|
+    .col-lg-4
+      .on-tap.panel
+        .panel-heading.text-center
+          - if tap.keg.present?
+            = image_tag("beer-tap.jpg", size: "200x200")
+          - else
+            = image_tag("beer-tap-empty.jpg", size: "200x200")
+
+        .panel-body{style: "height: 7em"}
+          - if tap.keg.present?
+            .row
+              .col-lg-3
+                Beer:
+              .col-lg-9.text-right
+                = tap.keg.beer.name
+            .row
+              .col-lg-3
+                Style:
+              .col-lg-9.text-right
+                = tap.keg.beer.style
+
+            .row
+              .col-lg-3
+                ABV:
+              .col-lg-9.text-right
+                = "#{tap.keg.beer.abv}%"
+          - else
+            .text-center
+              Tap Empty...
+              %br
+              Annoy your Keg Master!!!
+
+        .panel-footer.text-center
+          %h4
+            = tap.name
