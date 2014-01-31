@@ -3,7 +3,12 @@ class ReminderMailer < ActionMailer::Base
 
 
   def tap_empty_email(org)
-    mail(to: org.reminder_email, subject: 'BEER TAP EMPTY!!!') if org.present? and org.reminder_email.present?
+    if org.present?
+      addresses = org.kegmeisters.map(&:email)
+      addresses = org.reminder_email if addresses.blank?
+
+      mail(to: addresses, subject: 'BEER TAP EMPTY!!!') if addresses.present?
+    end
   end
 
 end
