@@ -4,8 +4,6 @@ class User < ActiveRecord::Base
 
   # Validations ========================================================================================================
   validates :email, uniqueness: true, format: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
-  validates :email, uniqueness: true
-
 
   # Class Methods ======================================================================================================
   def self.from_facebook auth_hash
