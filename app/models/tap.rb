@@ -9,6 +9,7 @@ class Tap < ActiveRecord::Base
 
   before_save :touch_keg_if_tapped
   before_save :send_reminder_email
+  before_save :send_keg_tapped_email
 
   def finish
     self.keg_id = nil
@@ -32,7 +33,11 @@ class Tap < ActiveRecord::Base
   end
 
   def send_reminder_email
-    ReminderMailer.tap_empty_email(self.org).deliver if self.org.present? && self.keg_id_changed? && self.keg_id.nil?
+    OrgMailer.tap_empty_email(self.org).deliver if self.org.present? && self.keg_id_changed? && self.keg_id.nil?
+  end
+
+  def send_keg_tapped_email
+    OrgMailer.keg_tapped_email(self.org, self).deliver if self.org.present? && self.keg_id_changed? && self.keg_id.present?
   end
 
 end

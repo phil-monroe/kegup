@@ -2,7 +2,7 @@ module Api
   class OrgsController < ApiController
     def bother
       user = org.users.find(params[:user_id])
-      KegmeisterMailer.bother_email(org, user).deliver
+      OrgMailer.bother_kegmeister_email(org, user).deliver
       render json: {status: :success}
     end
 

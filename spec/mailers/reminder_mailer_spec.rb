@@ -2,14 +2,14 @@ require "spec_helper"
 
 
 
-describe ReminderMailer do
+describe OrgMailer do
 
-  let(:mailer) { ReminderMailer }
+  let(:mailer) { OrgMailer }
   let(:org){ FactoryGirl.create :org }
 
   describe '#tap_empty_email' do
     before do
-      @email = ReminderMailer.tap_empty_email(org).deliver
+      @email = OrgMailer.tap_empty_email(org).deliver
     end
 
     it 'should send a single email' do
@@ -29,7 +29,7 @@ describe ReminderMailer do
 
   describe '#tap_empty_email no email address' do
     before do
-      @email = ReminderMailer.tap_empty_email(build(:org, reminder_email: nil)).deliver
+      @email = OrgMailer.tap_empty_email(build(:org, reminder_email: nil)).deliver
     end
 
     it 'should not send a single email' do
