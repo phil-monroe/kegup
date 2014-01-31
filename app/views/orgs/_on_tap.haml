@@ -33,11 +33,20 @@
                 Tapped:
               .col-lg-9.text-right
                 = format_date(tap.keg.tapped_date)
+            .row
+              .col-lg-12.text-right
+                .tap-empty.btn.btn-danger.btn-xs{ 'data-tap-id' => tap.id, 'data-org-id' => @org.id }
+                  Empty!
+
           - else
-            .text-center
-              Tap Empty...
-              %br
-              Annoy your Keg Master!!!
+            .row
+              .col-lg-12.text-center
+                %br
+                Tap Empty...
+                %br
+                Annoy your Keg Master!!!
+
+
 
         .panel-footer.text-center
           %h4

@@ -5,3 +5,4 @@
 //= require slate/loader
 //= require slate/bootswatch
 //= require turbolinks
+//= require orgs

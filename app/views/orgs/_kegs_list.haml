@@ -14,10 +14,17 @@
           Style
         %th
           ABV
-        %th
-          Tapped On
-        %th
-          Finished On
+
+        - if tappable
+          %th
+
+        -else
+          %th
+            Tapped On
+          %th
+            Finished On
+
+
 
     %tbody
       - kegs.each do |keg|
@@ -30,9 +37,21 @@
             = keg.beer.style
           %td.mid
             = "#{keg.beer.abv}%"
-          %td.mid
-            = format_date(keg.tapped_date)
-          %td.mid
-            = format_date(keg.finished_date)
+          - if tappable
+            %th
+              %td.mid.text-right
+
+                .keg-tapped.btn.btn-success{'data-org-id' => org.id, 'data-keg-id' => keg.id }
+                  Tap Keg!
+                on
+                = collection_select "keg-#{keg.id}", :tap_id, org.taps.available, :id, :name
+          -else
+            %td.mid
+              = format_date(keg.tapped_date)
+            %td.mid
+              = format_date(keg.finished_date)
+
+
+
 - else
   No kegs present...

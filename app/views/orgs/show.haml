@@ -9,11 +9,11 @@
 
       .row
         .col-lg-12
-          = render 'kegs_list', title: "Keg Backlog", kegs: @org.kegs.backlogged
+          = render 'kegs_list', title: "Keg Backlog", org: @org, kegs: @org.kegs.backlogged, tappable: true
 
       .row
         .col-lg-12
-          = render 'kegs_list', title: "Previous Kegs", kegs: @org.kegs.finished
+          = render 'kegs_list', title: "Previous Kegs", org: @org,  kegs: @org.kegs.finished, tappable: false
 
 
     .col-lg-3
