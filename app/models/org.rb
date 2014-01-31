@@ -19,4 +19,8 @@ class Org < ActiveRecord::Base
   def kegmeisters
     @kegmeisters ||= self.users.merge(OrgUserMembership.kegmeisters)
   end
+
+  def has_empty_taps?
+    taps.map(&:empty?).include?(true)
+  end
 end

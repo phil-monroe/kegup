@@ -15,6 +15,10 @@ class Tap < ActiveRecord::Base
     save
   end
 
+  def empty?
+    keg.nil?
+  end
+
   private
   def touch_keg_if_tapped
     if self.keg_id_changed?

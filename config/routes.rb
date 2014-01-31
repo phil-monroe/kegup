@@ -11,6 +11,10 @@ Kegup::Application.routes.draw do
 
   namespace :api do
     resources :orgs do
+      member do
+        get 'bother'
+      end
+
       resources :taps do
         member do
           patch 'finished'

@@ -1,6 +1,12 @@
 .kegmeisters.row
   .col-lg-12
-    %h3 Kegmeisters
+    %h3
+      Kegmeisters
+      .pull-right
+        - if @org.has_empty_taps?
+          #bother-kegmeisters.btn.btn-warning.btn-sm{'data-org-id' => @org.id, 'data-user-id' => current_user.id}
+            Bother
+
     %hr
     - @org.kegmeisters.each do |user|
       = user.name
