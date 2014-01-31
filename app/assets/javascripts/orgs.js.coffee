@@ -63,5 +63,8 @@ orgs = ->
     ).bind "ajax:error", (e, xhr, status, error) ->
       Turbolinks.visit(window.location.toString())
 
+  $('.description').popover
+    trigger: 'hover'
+
 document.addEventListener "page:load", orgs
 $(orgs)

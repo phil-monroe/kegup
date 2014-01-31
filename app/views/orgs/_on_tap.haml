@@ -38,6 +38,11 @@
                 Tapped:
               .col-lg-9.text-right
                 = format_date(tap.keg.tapped_date)
+            .row.description{'data-toggle' => "popover", 'data-placement' => "bottom", 'data-content' => tap.keg.beer.description}
+              .col-lg-12
+                = truncate(tap.keg.beer.description, length: 50, separator: ' ')
+
+
             .empty-tap.row
               .col-lg-12.text-right
                 - if @org.users.include?(current_user)
