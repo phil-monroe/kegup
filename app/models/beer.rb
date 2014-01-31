@@ -1,5 +1,5 @@
 class Beer < ActiveRecord::Base
-  STYLES = ['IPA', 'Amber', 'Lager', 'Pale Ale', 'Marzen', 'Altbier', 'American Pale Ale', 'Porter', 'California Common / Steam', 'Amber Ale', 'Witbier', 'Abbey Dubbel', 'Imperial IPA', 'Pale Lager', 'Strong Ale']
+  STYLES = ['IPA', 'Amber', 'Lager', 'Pale Ale', 'Marzen', 'Altbier', 'American Pale Ale', 'Porter', 'California Common / Steam', 'Amber Ale', 'Witbier', 'Abbey Dubbel', 'Imperial IPA', 'Pale Lager', 'Strong Ale', 'English Pale Ale', 'Marzen / Oktoberfest', 'Bohemian / Czech Pilsener', 'Hefeweizen', 'Cider']
   validates :name, presence: true
   validates :style, inclusion: { in: STYLES }
 
