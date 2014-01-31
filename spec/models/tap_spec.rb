@@ -13,6 +13,16 @@ describe Tap do
     expect(build(:tap, org_id: 1, name: 'tap 1')).to_not be_valid
   end
 
+  it 'has available taps that have no kegs' do
+    keg1 = create(:tap)
+    keg2 = create(:tap, keg: create(:keg))
+
+    available_taps = Tap.available
+    expect(available_taps).to have(1).item
+    expect(available_taps).to include(keg1)
+    expect(available_taps).to_not include(keg2)
+  end
+
   describe 'modifying kegs' do
     let(:keg1) { create(:keg) }
     let(:keg2) { create(:keg) }
@@ -54,7 +64,6 @@ describe Tap do
       expect(keg2.tapped_date).to be_present
       expect(keg2.finished_date).to be_present
     end
-
   end
 
 end
