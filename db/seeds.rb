@@ -2,7 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 
-    org = Org.where(name: 'Identified').first_or_create()
+    org = Org.where(name: 'Identified', reminder_email: 'kegmaster@identified.com').first_or_create()
 
     Beer.destroy_all
     OrgBeerSelection.destroy_all

@@ -8,6 +8,14 @@ class Tap < ActiveRecord::Base
   scope :available, -> { where(keg_id: nil) }
 
   before_save :touch_keg_if_tapped
+  before_save :send_reminder_email
+
+  def finish
+    self.keg_id = nil
+    save
+  end
+
+  private
   def touch_keg_if_tapped
     if self.keg_id_changed?
       if self.keg.present?
@@ -18,4 +26,9 @@ class Tap < ActiveRecord::Base
       Keg.find(self.keg_id_was).touch(:finished_date) if self.keg_id_was.present?
     end
   end
+
+  def send_reminder_email
+    ReminderMailer.tap_empty_email(self.org).deliver if self.org.present? && self.keg_id_changed? && self.keg_id.nil?
+  end
+
 end

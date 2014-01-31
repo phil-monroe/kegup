@@ -35,10 +35,10 @@ end
 
 
 group :development, :test do
+  gem 'letter_opener'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'quiet_assets'
-
 end
 
 

@@ -58,6 +58,7 @@ ActiveAdmin.register Org do
 
     f.inputs "Details" do
       f.input :name
+      f.input :reminder_email
     end
 
     f.inputs "Available Beers" do
