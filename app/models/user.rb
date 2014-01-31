@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Associations =======================================================================================================
-
+  has_many :org_user_memberships
+  has_many :orgs, through: :org_user_memberships
 
   # Validations ========================================================================================================
   validates :email, uniqueness: true, format: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
@@ -26,4 +27,5 @@ class User < ActiveRecord::Base
   def name
     "#{first_name} #{last_name}"
   end
+
 end

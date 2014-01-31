@@ -10,18 +10,19 @@
       %ul.nav.navbar-nav
 
       %ul.nav.navbar-nav.navbar-right
-        %li.dropdown
-          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-            = @org.try(:name) || "Orgs"
-            %b.caret
-          %ul.dropdown-menu
-            - (Org.all - [@org]).each do |org|
-              %li
-                %a{href: org_path(org)}
-                  = org.name
-
-
         - if current_user.present?
+          -if current_user.orgs.present?
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                = current_user.orgs.includes(@org) ? @org.name : "Orgs"
+                %b.caret
+              %ul.dropdown-menu
+                - (Org.all - [@org]).each do |org|
+                  %li
+                    %a{href: org_path(org)}
+                      = org.name
+
+
           %li
             %a{href: "#"}
               = image_tag(current_user.avatar_url, size: '20x20')

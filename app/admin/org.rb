@@ -12,6 +12,7 @@ ActiveAdmin.register Org do
           attributes_table_for org do
             row :id
             row :name
+            row :reminder_email
           end
         end
 

@@ -7,6 +7,8 @@ Kegup::Application.routes.draw do
 
   resources :orgs
 
+  resources :org_user_memberships
+
   namespace :api do
     resources :orgs do
       resources :taps do
