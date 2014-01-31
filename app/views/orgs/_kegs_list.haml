@@ -43,7 +43,7 @@
           - if tappable
             %td.mid
               .text-center
-                - if available_taps.present? && current_user.present? && current_user.kegmeister_for(org)
+                - if available_taps.present? && current_user.present? && current_user.member_for(org)
                   .keg-tapped.btn.btn-success.btn-sm{'data-org-id' => org.id, 'data-keg-id' => keg.id }
                     Tap Keg!
                   %br

@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
     kegmeister_orgs.include? org
   end
 
+  def member_for org
+    orgs.include? org
+  end
+
   def kegmeister_orgs
     @kegmeister_orgs ||= self.orgs.merge(OrgUserMembership.kegmeisters)
   end
