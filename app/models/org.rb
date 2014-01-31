@@ -13,9 +13,10 @@ class Org < ActiveRecord::Base
   accepts_nested_attributes_for :org_beer_selections, allow_destroy: true
   accepts_nested_attributes_for :taps, allow_destroy: true
   accepts_nested_attributes_for :kegs, allow_destroy: true
+  accepts_nested_attributes_for :org_user_memberships, allow_destroy: true
 
 
-  def keg_masters
+  def kegmasters
     @kegmasters ||= self.users.merge(OrgUserMembership.kegmasters)
   end
 end

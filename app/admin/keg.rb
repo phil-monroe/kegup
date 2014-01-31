@@ -1,4 +1,6 @@
 ActiveAdmin.register Keg do
+  menu false
+
   controller do
     def permitted_params
       params.permit!
