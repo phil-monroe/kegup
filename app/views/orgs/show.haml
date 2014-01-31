@@ -15,10 +15,12 @@
             %li
               %a{"data-toggle" => "tab", href: "#previous-kegs"} Previous Kegs
             %li
-              %a{"data-toggle" => "tab", href: "#available-beers"} Orderable Beer
+              %a{"data-toggle" => "tab", href: "#available-beers"} Available Beer
             - if current_user.try :kegmeister_for, @org
               %li
                 %a{"data-toggle" => "tab", href: "#order-keg"} Manage Kegs
+              %li
+                %a{"data-toggle" => "tab", href: "#manage-users"} Manage Members
 
           #org-tabs.tab-content
             #keg-in-stock.tab-pane.active
@@ -28,25 +30,24 @@
 
               .row
                 .col-lg-12
-                  %h3 Keg Backlog
-                  %hr
-                  = render 'kegs_list', org: @org, kegs: @org.kegs.backlogged, tappable: true
+                  = render 'kegs_list', org: @org, kegs: @org.kegs.backlogged, tappable: true, title: 'Keg Backlog'
 
             #previous-kegs.tab-pane
-              = render 'kegs_list', org: @org,  kegs: @org.kegs.finished, tappable: false
+              .row
+                .col-lg-12
+                  = render 'kegs_list', org: @org,  kegs: @org.kegs.finished, tappable: false, title: 'Previous Kegs'
 
             #available-beers.tab-pane
-              = render 'beer_list', org: @org, beers: @org.beers
+              .row
+                .col-lg-12
+                  = render 'beer_list', org: @org, beers: @org.beers, title: "Available Beer"
 
             - if @org.kegmeisters.include?(current_user)
               #order-keg.tab-pane
                 = render 'order_keg', org: @org
 
-
-
-
-
-
+              #manage-users.tab-pane
+                = render 'user_list', org: @org, users: @org.users, title: "Members"
 
     .col-lg-3
       = render 'members'

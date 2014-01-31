@@ -1,0 +1,36 @@
+.row
+  .col-lg-12
+    %h3
+      = title
+    %hr
+    - if users.present?
+      %table.table.table-hover.table-stripped.beer-table
+        %thead
+          %tr
+            %th
+
+            %th
+              User
+            %th
+              Email
+            %th
+              Actions
+
+
+
+
+        %tbody
+          - users.each do |user|
+            %tr
+              %td.text-center.mid
+                = image_tag(user.avatar_url)
+              %td.mid
+                = user.name
+              %td.mid
+                = user.email
+              %td.mid
+
+
+
+    - else
+      No users...
