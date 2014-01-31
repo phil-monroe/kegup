@@ -3,18 +3,44 @@
     = render 'beer_list', org: org, beers: org.suggested_beer, title: 'Suggested Beer'
 
 .row
-  .col-lg-12
+  .col-lg-8
+    %h3
+      Distributors
+    %hr
+    - org.distributors.each do |dist|
+      .panel
+        .panel-heading.h4
+          = dist.name
+        .panel-body
+          %p
+            = dist.address
+            - if dist.address_2.present?
+              %br
+              = dist.address_2
+            %br
+            = "#{dist.city}, #{dist.state}, #{dist.zip}"
+            %br
+            = dist.phone
+
+
+        .panel-footer
+          - if dist.order_email.present?
+            %a.btn.btn-success.pull-right{href: "mailto:#{dist.order_email}?subject=Keg order for #{org.name}"}
+              Place Order
+          - if dist.contact_email.present?
+            %a.btn.btn-info.pull-right{href: "mailto:#{dist.contact_email}?subject=Question from #{org.name}"}
+              Contact
+          .clearfix
+  .col-lg-4
     %h3
       Add Keg
     %hr
-    .row
-      .col-lg-4
-        .well.text-center
-          = form_for [org, Keg.new(org_id: org.id)], html: { role: 'form' }  do |f|
-            = f.hidden_field :org_id
+      .well.text-center
+        = form_for [org, Keg.new(org_id: org.id)], html: { role: 'form' }  do |f|
+          = f.hidden_field :org_id
 
-            %div.form-group
-              = f.collection_select :beer_id, org.beers, :id, :name
+          %div.form-group
+            = f.collection_select :beer_id, org.beers, :id, :name
 
-            %div.form-group
-              = f.submit "Add Keg!", class: "btn btn-primary btn-block"
+          %div.form-group
+            = f.submit "Add Keg!", class: "btn btn-primary btn-block"
