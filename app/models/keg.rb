@@ -10,6 +10,7 @@ class Keg < ActiveRecord::Base
   def name
     "#{short_name} - #{self.beer.name}"
   end
+
   def short_name
     "Keg #{self.id} "
   end

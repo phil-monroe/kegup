@@ -27,6 +27,7 @@
 
 
     %tbody
+      - available_taps = org.taps.available
       - kegs.each do |keg|
         %tr
           %td.text-center.mid
@@ -40,11 +41,11 @@
           - if tappable
             %th
               %td.mid.text-right
-
-                .keg-tapped.btn.btn-success{'data-org-id' => org.id, 'data-keg-id' => keg.id }
-                  Tap Keg!
-                on
-                = collection_select "keg-#{keg.id}", :tap_id, org.taps.available, :id, :name
+                - if available_taps.present?
+                  .keg-tapped.btn.btn-success{'data-org-id' => org.id, 'data-keg-id' => keg.id }
+                    Tap Keg!
+                  on
+                  = collection_select "keg-#{keg.id}", :tap_id, org.taps.available, :id, :name
           -else
             %td.mid
               = format_date(keg.tapped_date)
