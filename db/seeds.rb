@@ -55,5 +55,6 @@
     Tap.create(name: 'Tap 2', org: org, keg: keg2)
 
     Keg.create(org: org, beer: Beer.find_by_name('North Coast Scrimshaw Pils'))
+    Keg.create(org: org, beer: Beer.find_by_name('Speakeasy Prohibition Ale'))
 
 

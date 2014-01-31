@@ -3,7 +3,7 @@ ActiveAdmin.register Beer do
 
   index do
     column 'Image' do |beer|
-      image_tag beer.image_url(:thumb).to_s
+      image_tag beer.image_url(:small).to_s
     end
     column :name
     column :style
