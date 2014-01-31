@@ -17,3 +17,4 @@
 .env
 .postgres
 .idea/*
+public/uploads

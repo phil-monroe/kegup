@@ -5,4 +5,10 @@ class Beer < ActiveRecord::Base
 
   has_many :org_beer_selections
   has_many :orgs, through: :org_beer_selections
+
+  mount_uploader :image, ImageUploader
+
+
+
+
 end

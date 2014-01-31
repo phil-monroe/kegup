@@ -31,7 +31,7 @@
       - kegs.each do |keg|
         %tr
           %td.text-center.mid
-            = image_tag("beer.png", size: "50x50")
+            = image_tag(keg.beer.image_url(:thumb).to_s)
           %td.mid
             = keg.beer.name
           %td.mid
