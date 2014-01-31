@@ -15,7 +15,7 @@
             %li
               %a{"data-toggle" => "tab", href: "#previous-kegs"} Previous Kegs
             %li
-              %a{"data-toggle" => "tab", href: "#available-beers"} Available Beer
+              %a{"data-toggle" => "tab", href: "#available-beers"} Beer Possibilities
             - if current_user.try(:kegmeister_for, @org)
               %li
                 %a{"data-toggle" => "tab", href: "#order-keg"} Manage Kegs
@@ -40,7 +40,7 @@
             #available-beers.tab-pane
               .row
                 .col-lg-12
-                  = render 'beer_list', org: @org, beers: @org.beers, title: "Available Beer"
+                  = render 'beer_list', org: @org, beers: @org.beers, title: "Beer Possibilities"
 
             - if @org.kegmeisters.include?(current_user)
               #order-keg.tab-pane
