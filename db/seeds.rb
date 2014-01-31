@@ -2,14 +2,14 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 
-Beer.destroy_all
-Distributor.destroy_all
-DistributorBeerSelection.destroy_all
-Tap.destroy_all
-Keg.destroy_all
-OrgUserMembership.destroy_all
+Rails.application.eager_load!
+models = ActiveRecord::Base.subclasses - [ActiveRecord::SchemaMigration]
+models.map(&:destroy_all)
+models.map(&:table_name).map{ |table| ActiveRecord::Base.connection.execute("TRUNCATE #{table} RESTART IDENTITY")}
 
-identified = Org.where(name: 'Identified', reminder_email: 'kegmeister@identified.com').first_or_create()
+
+
+identified = Org.create!(id: 1, name: 'Identified', reminder_email: 'kegmeister@identified.com')
 
 Beer.create!([
   { name: '21st Amendment IPA'                , brewed_by: '21st Amendment'                        , origin: 'San Francisco, CA, USA'             , style: 'IPA'                       , abv: 6.7  , remote_image_url: 'http://www.hopheadsaid.com/uploads/7/6/9/4/7694487/8788677.png?261' , description: "Deep golden color. Citrus and piney hop aromas. Assertive malt backbone supporting the overwhelming bitterness. Dry hopped in the fermenter with four types of hops giving an explosive hop aroma." },
@@ -55,8 +55,7 @@ identified.save!
 
 keg1 = identified.kegs.create!(beer: Beer.find_by_name('Widmer Brothers Hefeweizen'))
 keg2 = identified.kegs.create!(beer: Beer.find_by_name('Speakeasy Prohibition Ale'))
-identified.kegs.create!(beer: Beer.find_by_name('North Coast Scrimshaw Pils'))
-identified.kegs.create!(beer: Beer.find_by_name('Speakeasy Prohibition Ale'))
+identified.kegs.create!(beer: Beer.find_by_name('Bear Republic Racer 5 IPA'))
 
 identified.taps.create!(name: 'Tap 1', keg: keg1)
 identified.taps.create!(name: 'Tap 2', keg: keg2)

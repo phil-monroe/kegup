@@ -2,6 +2,8 @@ class Keg < ActiveRecord::Base
   belongs_to :org, touch: true
   belongs_to :beer
 
+  validates :beer_id, presence: true
+
   has_one :current_tap, class_name: 'Tap', inverse_of: :keg
 
   scope :backlogged, -> { where("tapped_date IS NULL AND finished_date IS NULL").order('updated_at DESC') }
