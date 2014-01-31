@@ -7,7 +7,7 @@
     Tap.destroy_all
     Keg.destroy_all
 
-    org = Org.where(name: 'Identified', reminder_email: 'kegmaster@identified.com').first_or_create()
+    org = Org.where(name: 'Identified', reminder_email: 'kegmeister@identified.com').first_or_create()
 
     Beer.create!([
                   { name: '21st Amendment IPA'                , brewed_by: '21st Amendment'                        , origin: 'San Francisco, CA, USA'             , style: 'IPA'                       , abv: 6.7  , remote_image_url: 'http://www.hopheadsaid.com/uploads/7/6/9/4/7694487/8788677.png?261' , description: "Deep golden color. Citrus and piney hop aromas. Assertive malt backbone supporting the overwhelming bitterness. Dry hopped in the fermenter with four types of hops giving an explosive hop aroma." },

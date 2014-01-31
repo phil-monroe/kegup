@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20140131051548) do
   create_table "org_user_memberships", force: true do |t|
     t.integer  "org_id"
     t.integer  "user_id"
-    t.boolean  "is_kegmaster", default: false
+    t.boolean  "is_kegmeister", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

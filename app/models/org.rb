@@ -16,7 +16,7 @@ class Org < ActiveRecord::Base
   accepts_nested_attributes_for :org_user_memberships, allow_destroy: true
 
 
-  def kegmasters
-    @kegmasters ||= self.users.merge(OrgUserMembership.kegmasters)
+  def kegmeisters
+    @kegmeisters ||= self.users.merge(OrgUserMembership.kegmeisters)
   end
 end

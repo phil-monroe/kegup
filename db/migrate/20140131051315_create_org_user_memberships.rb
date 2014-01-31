@@ -3,7 +3,7 @@ class CreateOrgUserMemberships < ActiveRecord::Migration
     create_table :org_user_memberships do |t|
       t.integer :org_id
       t.integer :user_id
-      t.boolean :is_kegmaster, default: false
+      t.boolean :is_kegmeister, default: false
 
       t.timestamps
     end

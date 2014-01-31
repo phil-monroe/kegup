@@ -20,7 +20,7 @@ ActiveAdmin.register Org do
           table_for org.users do
             column(:id)
             column(:name)
-            column(:kegmaster) { |user| org.kegmasters.include?(user) }
+            column(:kegmeister) { |user| org.kegmeisters.include?(user) }
           end
         end
       end
@@ -79,7 +79,7 @@ ActiveAdmin.register Org do
     f.inputs "Members" do
       f.has_many :org_user_memberships, allow_destroy: true do |bf|
         bf.input :user, input_html: { :disabled => true }
-        bf.input(:is_kegmaster, label: 'Kegmaster')
+        bf.input(:is_kegmeister, label: 'Kegmeister')
       end
     end
 

@@ -28,11 +28,11 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def kegmaster_for org
-    kegmaster_orgs.include? org
+  def kegmeister_for org
+    kegmeister_orgs.include? org
   end
 
-  def kegmaster_orgs
-    @kegmaster_orgs ||= self.orgs.merge(OrgUserMembership.kegmasters)
+  def kegmeister_orgs
+    @kegmeister_orgs ||= self.orgs.merge(OrgUserMembership.kegmeisters)
   end
 end
