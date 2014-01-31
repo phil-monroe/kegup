@@ -8,10 +8,10 @@ Kegup::Application.routes.draw do
   get 'auth/facebook/callback' => 'auth#facebook'
 
   resources :orgs do
+    resources :org_user_memberships
     resources :kegs
   end
 
-  resources :org_user_memberships
 
   namespace :api do
     resources :orgs do

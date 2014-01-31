@@ -1,0 +1,6 @@
+- if flash.present?
+  .container
+    - flash.each do |k, v|
+      .alert{ class: "alert-#{k}"}
+        = v
+        %a.close{"aria-hidden" => "true", "data-dismiss" => "alert", href: "#"} ×

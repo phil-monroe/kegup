@@ -12,14 +12,25 @@ class OrgUserMembershipsController < ApplicationController
   end
 
   def update
-    membership = OrgUserMembership.find(params[:id])
-    membership.update membership_params
+    org = Org.find params[:org_id]
+    membership = org.org_user_memberships.find(params[:id])
+
+    if membership.update membership_params
+      flash[:success] = "Successfully modified #{membership.user.name}'s membership in #{org.name}!"
+    else
+      flash[:danger] =  "Unable to modify #{membership.user.name}'s membership in #{org.name}!"
+    end
     redirect_to :back
   end
 
   def destroy
-    membership = OrgUserMembership.find(params[:id])
-    membership.destroy
+    org = Org.find params[:org_id]
+    membership = org.org_user_memberships.find(params[:id])
+    if membership.destroy
+      flash[:success] = "Successfully terminated membership in #{org.name}!"
+    else
+      flash[:danger] = "Unable to terminate membership in #{org.name}!"
+    end
     redirect_to :back
   end
 
