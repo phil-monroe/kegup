@@ -1,11 +1,10 @@
 class Org < ActiveRecord::Base
   validates :name, presence: true
 
-  has_many :org_beer_selections
-  has_many :beers, through: :org_beer_selections
-
   has_many :org_distributors
   has_many :distributors, through: :org_distributors
+  has_many :beers, through: :distributors
+
 
   has_many :taps, -> { order("id ASC") }
   has_many :kegs
@@ -15,7 +14,6 @@ class Org < ActiveRecord::Base
 
   accepts_nested_attributes_for :taps, allow_destroy: true
   accepts_nested_attributes_for :kegs, allow_destroy: true
-  accepts_nested_attributes_for :org_beer_selections, allow_destroy: true
   accepts_nested_attributes_for :org_user_memberships, allow_destroy: true
   accepts_nested_attributes_for :org_distributors, allow_destroy: true
 

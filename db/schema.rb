@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140131152536) do
+ActiveRecord::Schema.define(version: 20140131171709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20140131152536) do
     t.string   "image"
   end
 
+  create_table "distributor_beer_selections", force: true do |t|
+    t.integer  "distributor_id"
+    t.integer  "beer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "distributor_beer_selections", ["beer_id"], name: "index_distributor_beer_selections_on_beer_id", using: :btree
+  add_index "distributor_beer_selections", ["distributor_id"], name: "index_distributor_beer_selections_on_distributor_id", using: :btree
+
   create_table "distributors", force: true do |t|
     t.string   "name"
     t.string   "contact_email"
@@ -68,16 +78,6 @@ ActiveRecord::Schema.define(version: 20140131152536) do
 
   add_index "kegs", ["beer_id"], name: "index_kegs_on_beer_id", using: :btree
   add_index "kegs", ["org_id"], name: "index_kegs_on_org_id", using: :btree
-
-  create_table "org_beer_selections", force: true do |t|
-    t.integer  "org_id"
-    t.integer  "beer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "org_beer_selections", ["beer_id"], name: "index_org_beer_selections_on_beer_id", using: :btree
-  add_index "org_beer_selections", ["org_id"], name: "index_org_beer_selections_on_org_id", using: :btree
 
   create_table "org_distributors", force: true do |t|
     t.integer  "org_id"

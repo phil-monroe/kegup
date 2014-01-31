@@ -91,8 +91,6 @@ ActiveAdmin.register Org do
       end
     end
 
-
-
     f.inputs "Members" do
       f.has_many :org_user_memberships, allow_destroy: true do |bf|
         bf.input :user, input_html: { :disabled => true }
@@ -108,14 +106,6 @@ ActiveAdmin.register Org do
         bf.input :finished_date
       end
     end
-
-    f.inputs "Available Beers" do
-      f.has_many :org_beer_selections, allow_destroy: true do |bf|
-        bf.input :beer
-      end
-    end
-
-
 
     f.actions
   end

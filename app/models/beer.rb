@@ -3,8 +3,9 @@ class Beer < ActiveRecord::Base
   validates :name, presence: true
   validates :style, inclusion: { in: STYLES }
 
-  has_many :org_beer_selections
-  has_many :orgs, through: :org_beer_selections
+  has_many :distributor_beer_selections
+  has_many :distributors, through: :distributor_beer_selections
+  has_many :orgs, through: :distributors
 
   mount_uploader :image, ImageUploader
 
