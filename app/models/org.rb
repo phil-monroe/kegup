@@ -16,6 +16,6 @@ class Org < ActiveRecord::Base
 
 
   def keg_masters
-    self.users.merge(OrgUserMembership.kegmasters)
+    @kegmasters ||= self.users.merge(OrgUserMembership.kegmasters)
   end
 end
