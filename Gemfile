@@ -6,9 +6,12 @@ gem 'rails', '4.0.2'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'dalli'
+gem 'fog'
 gem 'haml-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails'
+gem 'memcachier'
 gem 'newrelic_rpm'
 gem 'omniauth-facebook'
 gem 'pg'
@@ -20,7 +23,10 @@ gem 'turbolinks'
 gem 'twitter-bootswatch-rails', '~> 3.0.3'
 gem 'twitter-bootswatch-rails-helpers'
 gem 'uglifier', '>= 1.3.0'
+gem 'unf'
 gem 'unicorn'
+
+
 
 
 

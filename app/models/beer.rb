@@ -8,7 +8,11 @@ class Beer < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-
-
+  def image_url *args
+    # Cache will be invalidated every time this Beer is updated or every day
+    Rails.cache.fetch([:images, self, :image_url, *args], expires_in: 1.day) do
+      super(*args)
+    end
+  end
 
 end
