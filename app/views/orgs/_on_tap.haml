@@ -11,7 +11,7 @@
           - else
             = image_tag("beer-tap-empty.jpg", size: "200x200")
 
-        .panel-body{style: "height: 7em"}
+        .panel-body{style: "height: 9em"}
           - if tap.keg.present?
             .row
               .col-lg-3
@@ -23,12 +23,16 @@
                 Style:
               .col-lg-9.text-right
                 = tap.keg.beer.style
-
             .row
               .col-lg-3
                 ABV:
               .col-lg-9.text-right
                 = "#{tap.keg.beer.abv}%"
+            .row
+              .col-lg-3
+                Tapped:
+              .col-lg-9.text-right
+                = format_date(tap.keg.tapped_date)
           - else
             .text-center
               Tap Empty...
