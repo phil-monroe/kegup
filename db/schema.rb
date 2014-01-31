@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140131051548) do
+ActiveRecord::Schema.define(version: 20140131152536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,20 @@ ActiveRecord::Schema.define(version: 20140131051548) do
     t.string   "image"
   end
 
+  create_table "distributors", force: true do |t|
+    t.string   "name"
+    t.string   "contact_email"
+    t.string   "order_email"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "kegs", force: true do |t|
     t.integer  "beer_id"
     t.integer  "org_id"
@@ -64,6 +78,16 @@ ActiveRecord::Schema.define(version: 20140131051548) do
 
   add_index "org_beer_selections", ["beer_id"], name: "index_org_beer_selections_on_beer_id", using: :btree
   add_index "org_beer_selections", ["org_id"], name: "index_org_beer_selections_on_org_id", using: :btree
+
+  create_table "org_distributors", force: true do |t|
+    t.integer  "org_id"
+    t.integer  "distributor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "org_distributors", ["distributor_id"], name: "index_org_distributors_on_distributor_id", using: :btree
+  add_index "org_distributors", ["org_id"], name: "index_org_distributors_on_org_id", using: :btree
 
   create_table "org_user_memberships", force: true do |t|
     t.integer  "org_id"

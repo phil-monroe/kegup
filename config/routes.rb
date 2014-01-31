@@ -1,4 +1,6 @@
 Kegup::Application.routes.draw do
+  resources :distributors
+
   ActiveAdmin.routes(self)
   # Authentication
   get 'auth/facebook'

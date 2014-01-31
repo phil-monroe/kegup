@@ -16,6 +16,16 @@ ActiveAdmin.register Org do
           end
         end
 
+        panel "Taps" do
+          table_for org.taps do
+            column(:id)
+            column(:name)
+            column(:keg)  { |tap| link_to(tap.keg.short_name, admin_keg_path(tap.keg) )       if tap.keg.present? }
+            column(:beer) { |tap| link_to(tap.keg.beer.name, admin_beer_path(tap.keg.beer) )  if tap.keg.present? }
+            column(:tapped_date) { |tap| format_date(tap.keg.tapped_date)  if tap.keg.present? }
+          end
+        end
+
         panel "Members" do
           table_for org.users do
             column(:id)
@@ -28,13 +38,12 @@ ActiveAdmin.register Org do
 
 
       column do
-        panel "Taps" do
-          table_for org.taps do
-            column(:id)
-            column(:name)
-            column(:keg)  { |tap| link_to(tap.keg.short_name, admin_keg_path(tap.keg) )       if tap.keg.present? }
-            column(:beer) { |tap| link_to(tap.keg.beer.name, admin_beer_path(tap.keg.beer) )  if tap.keg.present? }
-            column(:tapped_date) { |tap| format_date(tap.keg.tapped_date)  if tap.keg.present? }
+        panel "Distributors" do
+          table_for org.distributors do
+            column :id
+            column :name
+            column :phone
+            column :order_email
           end
         end
 
@@ -69,12 +78,20 @@ ActiveAdmin.register Org do
       f.input :reminder_email
     end
 
+    f.inputs "Distributors" do
+      f.has_many :org_distributors, allow_destroy: true do |bf|
+        bf.input :distributor
+      end
+    end
+
     f.inputs "Taps" do
       f.has_many :taps, allow_destroy: true do |bf|
         bf.input :name
         bf.input :keg, collection: [bf.object.keg, f.object.kegs.backlogged].flatten.compact
       end
     end
+
+
 
     f.inputs "Members" do
       f.has_many :org_user_memberships, allow_destroy: true do |bf|
