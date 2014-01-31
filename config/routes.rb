@@ -1,5 +1,9 @@
 Kegup::Application.routes.draw do
   ActiveAdmin.routes(self)
+  # Authentication
+  get 'auth/facebook'
+  get 'auth/logout' => 'auth#logout'
+  get 'auth/facebook/callback' => 'auth#facebook'
 
   resources :orgs
 

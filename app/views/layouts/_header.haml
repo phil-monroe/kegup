@@ -8,3 +8,30 @@
         %span.icon-bar
     #navbar-main.navbar-collapse.collapse
       %ul.nav.navbar-nav
+
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+            = @org.try(:name) || "Orgs"
+            %b.caret
+          %ul.dropdown-menu
+            - (Org.all - [@org]).each do |org|
+              %li
+                %a{href: org_path(org)}
+                  = org.name
+
+
+        - if current_user.present?
+          %li
+            %a{href: "#"}
+              = image_tag(current_user.avatar_url, size: '20x20')
+              = current_user.name
+
+          %li
+            %a{href: auth_logout_path}
+              %span.glyphicon.glyphicon-log-out
+        - else
+          %li
+            %a.login{href: auth_facebook_path}
+              .btn.btn-info.btn-xs
+                Login

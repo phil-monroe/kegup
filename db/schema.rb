@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140131001525) do
+ActiveRecord::Schema.define(version: 20140131021431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,5 +80,22 @@ ActiveRecord::Schema.define(version: 20140131001525) do
 
   add_index "taps", ["keg_id"], name: "index_taps_on_keg_id", using: :btree
   add_index "taps", ["org_id"], name: "index_taps_on_org_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "fb_id"
+    t.string   "fb_token"
+    t.integer  "fb_token_expires", limit: 8
+    t.string   "twitter_handle"
+    t.string   "avatar_url"
+    t.string   "fb_profile_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["fb_id"], name: "index_users_on_fb_id", unique: true, using: :btree
 
 end
