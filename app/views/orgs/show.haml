@@ -14,35 +14,31 @@
 
       .row
         .col-lg-12
-          = render 'kegs_list', title: "Keg Backlog", org: @org, kegs: @org.kegs.backlogged, tappable: true
+          %hr
 
       .row
         .col-lg-12
-          = render 'kegs_list', title: "Previous Kegs", org: @org,  kegs: @org.kegs.finished, tappable: false
+          %ul.nav.nav-tabs{style: "margin-bottom: 15px;"}
+            %li.active
+              %a{"data-toggle" => "tab", href: "#keg-backlog"} Keg Backlog
+            %li
+              %a{"data-toggle" => "tab", href: "#previous-kegs"} Previous Kegs
+            %li
+              %a{"data-toggle" => "tab", href: "#available-beers"} Available Beers
+
+          #myTabContent.tab-content.container
+
+            #keg-backlog.tab-pane.active
+              = render 'kegs_list', org: @org, kegs: @org.kegs.backlogged, tappable: true
+
+            #previous-kegs.tab-pane
+              = render 'kegs_list', org: @org,  kegs: @org.kegs.finished, tappable: false
+
+            #available-beers.tab-pane
+              = render 'beer_list', org: @org
+
+
 
 
     .col-lg-3
-      .row
-        .col-lg-12
-          %h3 Keg Masters
-          %hr
-          - @org.kegmasters.each do |user|
-            = user.name
-
-      .row
-        .col-lg-12
-          %h3
-            Members
-            - if current_user
-              .pull-right
-                - unless current_user.orgs.include?(@org)
-                  = form_for OrgUserMembership.new(org_id: @org.id, user_id: current_user.id) do |f|
-                    = f.hidden_field :org_id
-                    = f.hidden_field :user_id
-                    = f.submit "Join org", class: "btn btn-info btn-sm"
-                - else
-                  = link_to 'Leave Org', current_user.org_user_memberships.where(org: @org).first, confirm: "Are you sure?", method: :delete, class: "btn btn-danger btn-sm"
-
-          %hr
-          - @org.users.each do |user|
-            = user.name
+      = render 'members'

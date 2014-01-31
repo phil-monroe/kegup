@@ -1,0 +1,33 @@
+- if org.beers.present?
+  %table.table.table-hover.table-stripped.beer-table
+    %thead
+      %tr
+        %th
+
+        %th
+          Beer
+        %th
+          Origin
+        %th
+          Style
+        %th
+          ABV
+
+
+
+    %tbody
+      - org.beers.each do |beer|
+        %tr
+          %td.text-center.mid
+            = image_tag(beer.image_url(:thumb).to_s)
+          %td.mid
+            = beer.name
+          %td.mid
+            = beer.origin
+          %td.mid
+            = beer.style
+          %td.mid
+            = "#{beer.abv}%"
+
+- else
+  No beer available...

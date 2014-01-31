@@ -1,6 +1,3 @@
-%h3
-  = title
-%hr
 
 - if kegs.present?
   %table.table.table-hover.table-stripped.beer-table
@@ -10,6 +7,8 @@
 
         %th
           Beer
+        %th
+          Origin
         %th
           Style
         %th
@@ -34,6 +33,8 @@
             = image_tag(keg.beer.image_url(:small).to_s)
           %td.mid
             = keg.beer.name
+          %td.mid
+            = keg.beer.origin
           %td.mid
             = keg.beer.style
           %td.mid
