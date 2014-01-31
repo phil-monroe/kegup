@@ -7,7 +7,7 @@
       .on-tap.panel
         .panel-heading.text-center
           - if tap.keg.present?
-            = image_tag("beer-tap.jpg", size: "200x200")
+            = image_tag(tap.keg.beer.image_url(:large).to_s)
           - else
             = image_tag("beer-tap-empty.jpg", size: "200x200")
 
