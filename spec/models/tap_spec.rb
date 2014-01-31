@@ -66,4 +66,35 @@ describe Tap do
     end
   end
 
+  context 'tap empty reminder email' do
+    describe 'when tap gets empty' do
+      before do
+        @email_double = double('tap empty reminder email').as_null_object
+        @tap = create(:tap, org_id: 1, name: 'tap 1', org: create(:org, name: 'Identified'), keg: create(:keg))
+      end
+
+      it 'should send a tap_empty_email reminder' do
+        ReminderMailer.should_receive(:tap_empty_email).with(@tap.org) { @email_double}
+        @tap.finish
+      end
+
+    end
+
+    describe 'when tap is saved' do
+      before do
+        @email_double = double('tap empty reminder email').as_null_object
+        @tap = build(:tap, org_id: 1, name: 'tap 1', org: build(:org, name: 'Identified'))
+      end
+
+      it 'should not send a tap_empty_email reminder' do
+        ReminderMailer.should_not_receive(:tap_empty_email).with(@tap.org) { @email_double}
+        @tap.save
+      end
+
+    end
+
+
+  end
+
+
 end
