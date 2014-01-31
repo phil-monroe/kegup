@@ -35,8 +35,9 @@
                 = format_date(tap.keg.tapped_date)
             .row
               .col-lg-12.text-right
-                .tap-empty.btn.btn-danger.btn-xs{ 'data-tap-id' => tap.id, 'data-org-id' => @org.id }
-                  Empty!
+                - if @org.users.include?(current_user)
+                  .tap-empty.btn.btn-danger.btn-xs{ 'data-tap-id' => tap.id, 'data-org-id' => @org.id }
+                    Empty!
 
           - else
             .row
