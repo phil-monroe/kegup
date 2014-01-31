@@ -5,7 +5,9 @@ Kegup::Application.routes.draw do
   get 'auth/logout' => 'auth#logout'
   get 'auth/facebook/callback' => 'auth#facebook'
 
-  resources :orgs
+  resources :orgs do
+    resources :kegs
+  end
 
   resources :org_user_memberships
 

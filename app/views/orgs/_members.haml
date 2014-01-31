@@ -3,8 +3,8 @@
     %h3
       Kegmeisters
       .pull-right
-        - if @org.has_empty_taps?
-          #bother-kegmeisters.btn.btn-warning.btn-sm{'data-org-id' => @org.id, 'data-user-id' => current_user.id}
+        - if @org.users.include?(current_user) && @org.has_empty_taps?
+          #bother-kegmeisters.btn.btn-warning.btn-sm{'data-org-id' => @org.id, 'data-user-id' => current_user.try(:id)}
             Bother
 
     %hr
@@ -23,7 +23,7 @@
               = f.hidden_field :user_id
               = f.submit "Join org", class: "btn btn-info btn-sm"
           - else
-            = link_to 'Leave Org', current_user.org_user_memberships.where(org: @org).first, confirm: "Are you sure?", method: :delete, class: "btn btn-danger btn-sm"
+            = link_to 'Leave Org', current_user.org_user_memberships.where(org: @org).first, data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger btn-sm"
 
     %hr
     - @org.users.each do |user|

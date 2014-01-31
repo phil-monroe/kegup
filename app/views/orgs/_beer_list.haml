@@ -1,4 +1,4 @@
-- if org.beers.present?
+- if beers.present?
   %table.table.table-hover.table-stripped.beer-table
     %thead
       %tr
@@ -16,7 +16,7 @@
 
 
     %tbody
-      - org.beers.each do |beer|
+      - beers.each do |beer|
         %tr
           %td.text-center.mid
             = image_tag(beer.image_url(:small).to_s)

@@ -1,0 +1,23 @@
+.row
+  .col-lg-12
+    %h3
+      Suggested Beer
+    %hr
+    = render 'beer_list', org: org, beers: org.suggested_beer
+
+.row
+  .col-lg-12
+    %h3
+      Add Keg
+    %hr
+    .row
+      .col-lg-4
+        .well.text-center
+          = form_for [org, Keg.new(org_id: org.id)], html: { role: 'form' }  do |f|
+            = f.hidden_field :org_id
+
+            %div.form-group
+              = f.collection_select :beer_id, org.beers, :id, :name
+
+            %div.form-group
+              = f.submit "Add Keg!", class: "btn btn-primary btn-block"

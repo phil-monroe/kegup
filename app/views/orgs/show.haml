@@ -1,4 +1,3 @@
-
 .container
   .row
     .col-lg-9
@@ -17,6 +16,9 @@
               %a{"data-toggle" => "tab", href: "#previous-kegs"} Previous Kegs
             %li
               %a{"data-toggle" => "tab", href: "#available-beers"} Orderable Beer
+            - if current_user.try :kegmeister_for, @org
+              %li
+                %a{"data-toggle" => "tab", href: "#order-keg"} Manage Kegs
 
           #org-tabs.tab-content
             #keg-in-stock.tab-pane.active
@@ -34,7 +36,14 @@
               = render 'kegs_list', org: @org,  kegs: @org.kegs.finished, tappable: false
 
             #available-beers.tab-pane
-              = render 'beer_list', org: @org
+              = render 'beer_list', org: @org, beers: @org.beers
+
+            - if @org.kegmeisters.include?(current_user)
+              #order-keg.tab-pane
+                = render 'order_keg', org: @org
+
+
+
 
 
 
