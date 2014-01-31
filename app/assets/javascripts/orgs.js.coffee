@@ -53,6 +53,15 @@ orgs = ->
   $('a[data-toggle="tab"]').on 'show.bs.tab', (e) ->
     window.location.hash = e.target.hash
 
+  $(".membership-form").on("ajax:success", (e, data, status, xhr) ->
+      Turbolinks.visit(window.location.toString())
+    ).bind "ajax:error", (e, xhr, status, error) ->
+      Turbolinks.visit(window.location.toString())
+
+  $(".membership-delete").on("ajax:success", (e, data, status, xhr) ->
+      Turbolinks.visit(window.location.toString())
+    ).bind "ajax:error", (e, xhr, status, error) ->
+      Turbolinks.visit(window.location.toString())
 
 document.addEventListener "page:load", orgs
 $(orgs)

@@ -11,14 +11,19 @@ class OrgUserMembershipsController < ApplicationController
     redirect_to org
   end
 
+  def update
+    membership = OrgUserMembership.find(params[:id])
+    membership.update membership_params
+    redirect_to :back
+  end
+
   def destroy
     membership = OrgUserMembership.find(params[:id])
     membership.destroy
-    redirect_to membership.org
-
+    redirect_to :back
   end
 
   def membership_params
-    params[:org_user_membership]
+    params.require(:org_user_membership).permit!
   end
 end

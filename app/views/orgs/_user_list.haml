@@ -3,7 +3,7 @@
     %h3
       = title
     %hr
-    - if users.present?
+    - if user_memberships.present?
       %table.table.table-hover.table-stripped.beer-table
         %thead
           %tr
@@ -14,21 +14,24 @@
             %th
               Email
             %th
-              Actions
-
-
-
 
         %tbody
-          - users.each do |user|
+          - user_memberships.each do |membership|
             %tr
               %td.text-center.mid
-                = image_tag(user.avatar_url)
+                = image_tag(membership.user.avatar_url)
               %td.mid
-                = user.name
+                = membership.user.name
               %td.mid
-                = user.email
-              %td.mid
+                = membership.user.email
+              %td.mid.text-right
+                - if current_user != membership.user
+                  = form_for membership, remote: true, html: { class: 'form-inline membership-form', style: 'display: inline;' } do |f|
+                    = f.hidden_field :is_kegmeister, value: !membership.is_kegmeister
+                    = f.submit 'Kegmeister', class: "btn btn-sm #{'btn-success' if membership.is_kegmeister}"
+
+                  = link_to 'x', membership, remote: true, method: :delete, class: 'btn btn-sm btn-danger membership-delete'
+
 
 
 
