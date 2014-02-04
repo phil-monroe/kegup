@@ -5,7 +5,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Kegup"
+  config.site_title = "Keg Up"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -55,7 +55,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the controller.
-  config.authentication_method = false
+  config.authentication_method = :authenticate_admin_user!
 
   # == User Authorization
   #
@@ -73,7 +73,7 @@ ActiveAdmin.setup do |config|
   # because, by default, user gets redirected to Dashboard. If user
   # doesn't have access to Dashboard, he'll end up in a redirect loop.
   # Method provided here should be defined in application_controller.rb.
-  # config.on_unauthorized_access = :access_denied
+  config.on_unauthorized_access = :access_denied
 
   # == Current User
   #
@@ -82,7 +82,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # to return the currently logged in user.
-  config.current_user_method = false
+  config.current_user_method = :current_admin_user
 
 
   # == Logging Out
@@ -95,7 +95,7 @@ ActiveAdmin.setup do |config|
   # will call the method to return the path.
   #
   # Default:
-  config.logout_link_path = :destroy_admin_user_session_path
+  config.logout_link_path = :auth_logout_path
 
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
@@ -118,7 +118,7 @@ ActiveAdmin.setup do |config|
   # This allows your users to comment on any resource registered with Active Admin.
   #
   # You can completely disable comments:
-  config.allow_comments = false
+  config.allow_comments = true
   #
   # You can disable the menu item for the comments index page:
   config.show_comments_in_menu = false

@@ -19,4 +19,15 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+
+  def current_admin_user
+    @current_admin_user ||= User.where(is_admin: true).find(session[:user_id])
+  rescue ActiveRecord::RecordNotFound
+    nil
+  end
+  helper_method :current_admin_user
+
+  def authenticate_admin_user!
+    redirect_to root_path if current_admin_user.blank?
+  end
 end

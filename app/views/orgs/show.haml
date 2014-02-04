@@ -16,7 +16,7 @@
               %a{"data-toggle" => "tab", href: "#previous-kegs"} Previous Kegs
             %li
               %a{"data-toggle" => "tab", href: "#available-beers"} Beer Possibilities
-            - if current_user.try(:kegmeister_for, @org)
+            - if @org.kegmeisters.include?(current_user)
               %li
                 %a{"data-toggle" => "tab", href: "#order-keg"} Manage Kegs
               %li
