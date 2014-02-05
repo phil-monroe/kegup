@@ -47,7 +47,8 @@ orgs = ->
 
   url = document.location.toString()
   if url.match('#')
-    $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
+    sel = ".nav-tabs a[href=##{url.split('#')[1]}]"
+    $(sel).tab('show') ;
 
   # Change hash for page-reload
   $('a[data-toggle="tab"]').on 'show.bs.tab', (e) ->
