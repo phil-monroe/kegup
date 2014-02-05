@@ -45,9 +45,9 @@ orgs = ->
       error: ->
         alert("Unable to scold kegmeisters.")
 
-  url = document.location.toString()
-  if url.match('#')
-    sel = ".nav-tabs a[href=##{url.split('#')[1]}]"
+  curr_url = document.location.toString()
+  if curr_url.match('#')
+    sel = ".nav-tabs a[href=##{curr_url.split('#')[1]}]"
     $(sel).tab('show') ;
 
   # Change hash for page-reload
