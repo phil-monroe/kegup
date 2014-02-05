@@ -3,3 +3,4 @@
 git push heroku master
 heroku run rake db:migrate
 heroku restart
+heroku config:add GIT_REF=`git describe --always`
