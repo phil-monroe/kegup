@@ -26,11 +26,11 @@
                 = membership.user.email
               %td.mid.text-right
                 - if current_user != membership.user
-                  = form_for [org, membership], remote: true, html: { class: 'form-inline membership-form', style: 'display: inline;' } do |f|
+                  = form_for [org, membership], html: { class: 'form-inline membership-form', style: 'display: inline;' } do |f|
                     = f.hidden_field :is_kegmeister, value: !membership.is_kegmeister
                     = f.submit 'Kegmeister', class: "btn btn-sm #{'btn-success' if membership.is_kegmeister}"
 
-                  = link_to 'x', [org, membership], remote: true, method: :delete, class: 'btn btn-sm btn-danger membership-delete'
+                  = link_to 'x', [org, membership], method: :delete, class: 'btn btn-sm btn-danger membership-delete'
 
 
 

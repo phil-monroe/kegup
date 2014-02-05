@@ -3,6 +3,7 @@ ruby '2.1.0'
 
 gem 'rails', '4.0.2'
 
+# gem 'turbolinks'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.0.0'
@@ -18,11 +19,11 @@ gem 'rack-timeout'
 gem 'rmagick'
 gem 'sass-rails', '~> 4.0.0'
 gem 'therubyracer'
-gem 'turbolinks'
 gem 'twitter-bootswatch-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'unf'
 gem 'unicorn'
+
 
 
 

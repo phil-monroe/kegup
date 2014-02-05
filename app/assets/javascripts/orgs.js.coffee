@@ -8,7 +8,7 @@ orgs = ->
         url: "/api/orgs/#{org_id}/taps/#{tap_id}/finished",
         method: "PATCH",
         success: ->
-          Turbolinks.visit("/orgs/#{org_id}")
+          window.location = "/orgs/#{org_id}"
 
         error: ->
           alert("Unable to empty tap...")
@@ -26,7 +26,7 @@ orgs = ->
         data:
           keg_id: keg_id
         success: ->
-          Turbolinks.visit("/orgs/#{org_id}")
+          window.location = "/orgs/#{org_id}"
 
         error: ->
           alert("Unable to tap keg...")
@@ -55,14 +55,14 @@ orgs = ->
     window.location.hash = e.target.hash
 
   $(".membership-form").on("ajax:success", (e, data, status, xhr) ->
-      Turbolinks.visit(window.location.toString())
+      window.location = window.location.toString()
     ).bind "ajax:error", (e, xhr, status, error) ->
-      Turbolinks.visit(window.location.toString())
+      window.location = window.location.toString()
 
   $(".membership-delete").on("ajax:success", (e, data, status, xhr) ->
-      Turbolinks.visit(window.location.toString())
+      window.location = window.location.toString()
     ).bind "ajax:error", (e, xhr, status, error) ->
-      Turbolinks.visit(window.location.toString())
+      window.location = window.location.toString()
 
   $('.description').popover
     trigger: 'hover'
