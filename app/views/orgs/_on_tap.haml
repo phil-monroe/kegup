@@ -46,7 +46,7 @@
             .empty-tap.row
               .col-lg-12.text-right
                 - if @org.users.include?(current_user)
-                  .tap-empty.btn.btn-danger.btn-xs{ 'data-tap-id' => tap.id, 'data-org-id' => @org.id }
+                  .tap-empty.btn.btn-danger.btn-xs{ 'data-tap-id' => tap.id, 'data-org-id' => @org.to_param }
                     Mark Keg as Empty!
 
           - else

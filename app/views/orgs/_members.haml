@@ -4,7 +4,7 @@
       Kegmeisters
       .pull-right
         - if @org.users.include?(current_user) && @org.has_empty_taps?
-          #bother-kegmeisters.btn.btn-warning.btn-sm{'data-org-id' => @org.id, 'data-user-id' => current_user.try(:id)}
+          #bother-kegmeisters.btn.btn-warning.btn-sm{'data-org-id' => @org.to_param, 'data-user-id' => current_user.try(:id)}
             Bother
 
     %hr

@@ -32,4 +32,8 @@ class Org < ActiveRecord::Base
     beer = beer - self.kegs.finished.limit(2).map(&:beer)
     beer.sample(3, random: Random.new(self.updated_at.to_i))
   end
+
+  def to_param
+    "#{self.id}-#{self.name}".parameterize
+  end
 end
