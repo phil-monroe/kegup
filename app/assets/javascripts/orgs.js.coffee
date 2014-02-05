@@ -1,4 +1,5 @@
-orgs = ->
+jQuery ->
+  # Keg Empty/Tapped ==========================================================
   $('.btn.tap-empty').on 'click', (event) ->
     org_id = $(this).data('org-id')
     tap_id = $(this).data('tap-id')
@@ -31,6 +32,8 @@ orgs = ->
         error: ->
           alert("Unable to tap keg...")
 
+
+  # Bother Kegmeisters ==========================================================
   $('#bother-kegmeisters').on 'click', (event) ->
     org_id  = $(this).data('org-id')
     user_id = $(this).data('user-id')
@@ -45,8 +48,18 @@ orgs = ->
       error: ->
         alert("Unable to scold kegmeisters.")
 
+
+  # Keg Descriptions ==========================================================
   $('.description').popover
     trigger: 'hover'
 
-document.addEventListener "page:load", orgs
-$(orgs)
+
+  # Tab Selection =============================================================
+  curr_url = document.location.toString()
+  if curr_url.match('#')
+    tab_sel = ".nav-tabs a[href=##{curr_url.split('#')[1]}]"
+    $(tab_sel).tab('show')
+
+  # Change hash for page-reload
+  $('a[data-toggle="tab"]').on 'show.bs.tab', (e) ->
+    window.location.hash = e.target.hash
