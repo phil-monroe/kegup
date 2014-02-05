@@ -7,6 +7,8 @@ require 'rails/all'
 Bundler.require(:default, Rails.env)
 I18n.enforce_available_locales = false
 module Kegup
+  GIT_SHA =`git rev-parse HEAD`.chomp
+
   class Application < Rails::Application
     # Precompile additional assets
     config.assets.precompile += %w(slate.css slate.js)

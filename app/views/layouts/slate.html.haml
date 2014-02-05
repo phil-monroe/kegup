@@ -20,9 +20,16 @@
     = yield(:page_javascript) if content_for?(:page_javascript)
 
   %body
-    = render 'layouts/header'
-    = render 'layouts/flash'
+    #wrap
 
-    .container
-      = yield
+      = render 'layouts/header'
+      = render 'layouts/flash'
+
+      .container
+        = yield
+
+    #footer
+      .container
+        %p.text-muted.credit.text-center
+          = "&copy; Kegup #{Time.now.year} - #{Kegup::GIT_SHA[0..8]}".html_safe
 
