@@ -4,3 +4,7 @@ git push heroku master
 heroku config:add GIT_REF=`git describe --always`
 heroku run rake db:migrate
 heroku restart
+
+for i in {1..5}; do
+  time $( curl www.kegup.com &> /dev/null )
+done
