@@ -45,25 +45,6 @@ orgs = ->
       error: ->
         alert("Unable to scold kegmeisters.")
 
-  curr_url = document.location.toString()
-  if curr_url.match('#')
-    sel = ".nav-tabs a[href=##{curr_url.split('#')[1]}]"
-    $(sel).tab('show') ;
-
-  # Change hash for page-reload
-  $('a[data-toggle="tab"]').on 'show.bs.tab', (e) ->
-    window.location.hash = e.target.hash
-
-  $(".membership-form").on("ajax:success", (e, data, status, xhr) ->
-      window.location = window.location.toString()
-    ).bind "ajax:error", (e, xhr, status, error) ->
-      window.location = window.location.toString()
-
-  $(".membership-delete").on("ajax:success", (e, data, status, xhr) ->
-      window.location = window.location.toString()
-    ).bind "ajax:error", (e, xhr, status, error) ->
-      window.location = window.location.toString()
-
   $('.description').popover
     trigger: 'hover'
 
