@@ -40,7 +40,7 @@
             #available-beers.tab-pane
               .row
                 .col-lg-12
-                  = render 'beer_list', org: @org, beers: @org.beers, title: "Beer Possibilities"
+                  = render 'shared/beer_list', org: @org, beers: @org.beers, title: "Beer Possibilities"
 
             - if @org.kegmeisters.include?(current_user)
               #order-keg.tab-pane

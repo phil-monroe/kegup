@@ -12,6 +12,8 @@ Kegup::Application.routes.draw do
     resources :kegs
   end
 
+  resources :users_favorite_beers, path: 'my-beers'
+
 
   namespace :api do
     resources :orgs do

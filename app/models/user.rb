@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   has_many :org_user_memberships
   has_many :orgs, through: :org_user_memberships
 
+  has_many :favorite_beers, class_name: Users::FavoriteBeer
+  has_many :beers, -> { select('beers.*, users_favorite_beers.id as favorite_beer_id')}, through: :favorite_beers
+
   # Validations ========================================================================================================
   validates :email, uniqueness: true, format: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
 

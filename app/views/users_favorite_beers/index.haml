@@ -1,0 +1,23 @@
+.container
+  .row
+    .col-lg-12
+      %h1
+        My Beers
+
+  .row
+    .col-lg-12
+      = render layout: 'shared/beer_list', locals: { beers: @favorite_beers, title: nil } do |beer|
+        = link_to 'Remove', users_favorite_beer_path(beer.favorite_beer_id), method: :delete, class: 'btn btn-sm btn-danger membership-delete'
+
+  .row
+    .col-lg-4
+      %h3
+        Add Beer to Favorites
+      %hr
+        .well.text-center
+          = form_for Users::FavoriteBeer.new, html: { role: 'form' }  do |f|
+            %div.form-group
+              = f.collection_select :beer_id, Beer.all, :id, :name
+
+            %div.form-group
+              = f.submit "Add Beer to Favorites!", class: "btn btn-primary btn-block btn-success"

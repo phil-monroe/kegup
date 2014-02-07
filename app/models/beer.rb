@@ -7,6 +7,9 @@ class Beer < ActiveRecord::Base
   has_many :distributors, through: :distributor_beer_selections
   has_many :orgs, through: :distributors
 
+  has_many :favorite_beers, class_name: Users::FavoriteBeer
+  has_many :users, through: :favorite_beers
+
   mount_uploader :image, ImageUploader
 
   def image_url *args

@@ -15,6 +15,9 @@
           Style
         %th
           ABV
+        - if block_given?
+          %th
+            / Actions
 
 
 
@@ -31,6 +34,9 @@
             = beer.style
           %td.mid
             = "#{beer.abv}%"
+          - if block_given?
+            %td.mid
+              = yield beer
 
 - else
   No beer available...
