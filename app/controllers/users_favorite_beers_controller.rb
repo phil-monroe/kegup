@@ -7,6 +7,8 @@ class UsersFavoriteBeersController < ApplicationController
     beer = Beer.find(params[:users_favorite_beer][:beer_id])
     current_user.favorite_beers.create!(beer: beer)
     flash[:success] = "Added #{beer.name} to your favorite beers."
+  rescue ActiveRecord::RecordInvalid => e
+    flash[:danger] = e.message
   rescue => e
     log_error e
     flash[:danger] = "Unable to add beer to your favorite beers."
