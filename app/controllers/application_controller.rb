@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def log_error err
-    logger.error err
+    logger.error "#{err.class} - #{err}"
     err.backtrace.each do |l|
       logger.error " | #{l}"
     end
