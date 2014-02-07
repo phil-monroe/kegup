@@ -1,6 +1,6 @@
 class UsersFavoriteBeersController < ApplicationController
   def index
-    @favorite_beers = current_user.beers.load
+    @favorite_beers = current_user.beers_with_favorite_id.load
   end
 
   def create

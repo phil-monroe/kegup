@@ -6,7 +6,7 @@ class Org < ActiveRecord::Base
   has_many :beers, through: :distributors
 
 
-  has_many :taps, -> { order("id ASC") }
+  has_many :taps, -> { order("taps.id ASC") }
   has_many :kegs
 
   has_many :org_user_memberships
@@ -27,11 +27,30 @@ class Org < ActiveRecord::Base
   end
 
   def suggested_beer
-    beer = self.beers.to_a.dup - self.kegs.backlogged.map(&:beer)
-    beer = beer - self.taps.map{ |tap| tap.keg.try :beer }.compact
-    beer = beer - self.kegs.finished.limit(2).map(&:beer)
-    beer.sample(3, random: Random.new(self.updated_at.to_i))
+    backlogged_beer_ids = kegs.backlogged.pluck(:beer_id)
+    tapped_beer_ids     = taps.joins(:keg).pluck(:beer_id)
+    available_beers     = beers.where('beers.id NOT IN (?)', backlogged_beer_ids + tapped_beer_ids)
+
+    beer_histogram = available_beers.inject(Hash.new) {|hist, beer| hist[beer] = 0; hist }
+    users.includes(:beers).each do |user|
+      user.beers.each do |beer|
+        beer_histogram[beer] += 1 if beer_histogram[beer].present?
+      end
+    end
+
+    # beer_histogram.each {|b, c| puts "#{b.name} => #{c}"}
+
+    rng = Random.new(self.updated_at.to_i)
+
+    beer_histogram
+    .to_a
+    .shuffle(random: rng)
+    .sort_by(&:last)
+    .last(3)
+    .map(&:first)
+    .reverse!
   end
+  add_method_tracer :suggested_beer
 
   def to_param
     "#{self.id}-#{self.name}".parameterize
