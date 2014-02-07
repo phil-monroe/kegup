@@ -6,7 +6,7 @@ class UsersFavoriteBeersController < ApplicationController
   def create
     beer = Beer.find(params[:users_favorite_beer][:beer_id])
     current_user.favorite_beers.create!(beer: beer)
-    flash[:success] = "Unable to add beer to your favorite beers."
+    flash[:success] = "Added #{beer.name} to your favorite beers."
   rescue => e
     log_error e
     flash[:danger] = "Unable to add beer to your favorite beers."
@@ -20,7 +20,7 @@ class UsersFavoriteBeersController < ApplicationController
     flash[:success] = "Removed #{fav_beer.beer.name} from your favorite beers."
   rescue => e
     log_error e
-    flash[:danger] = "Unable to remove #{fav_beer.beer.name} from your favorite beers."
+    flash[:danger] = "Unable to remove that beer from your favorite beers."
   ensure
     redirect_to :back
   end
