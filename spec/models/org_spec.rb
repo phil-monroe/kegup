@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Org do
   it { should have_many(:beers) }
-  it { should have_many(:org_beer_selections) }
+  it { should have_many(:distributors) }
 
   it "should always have a name" do
     expect(build(:org, name: '')).to_not be_valid

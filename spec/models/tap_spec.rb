@@ -24,8 +24,9 @@ describe Tap do
   end
 
   describe 'modifying kegs' do
-    let(:keg1) { create(:keg) }
-    let(:keg2) { create(:keg) }
+    let(:beer) { create(:beer)}
+    let(:keg1) { create(:keg, beer: beer) }
+    let(:keg2) { create(:keg, beer: beer) }
     let(:tap){ create(:tap) }
 
     it 'updates new kegs tapped date' do
@@ -74,7 +75,7 @@ describe Tap do
       end
 
       it 'should send a tap_empty_email reminder' do
-        ReminderMailer.should_receive(:tap_empty_email).with(@tap.org) { @email_double}
+        OrgMailer.should_receive(:tap_empty_email).with(@tap.org) { @email_double}
         @tap.finish
       end
 
@@ -87,7 +88,7 @@ describe Tap do
       end
 
       it 'should not send a tap_empty_email reminder' do
-        ReminderMailer.should_not_receive(:tap_empty_email).with(@tap.org) { @email_double}
+        OrgMailer.should_not_receive(:tap_empty_email).with(@tap.org) { @email_double}
         @tap.save
       end
 

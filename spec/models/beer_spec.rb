@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Beer do
   it { should have_many(:orgs) }
-  it { should have_many(:org_beer_selections) }
+  it { should have_many(:distributors) }
 
   it 'validates name' do
     expect(build(:beer)).to be_valid

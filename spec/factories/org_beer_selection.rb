@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :org_beer_selection do
-    org_id 0
+  factory :distributor_beer_selection do
+    distributor_id 0
     beer_id 0
   end
 end
