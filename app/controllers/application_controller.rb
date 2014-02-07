@@ -30,4 +30,11 @@ class ApplicationController < ActionController::Base
   def authenticate_admin_user!
     redirect_to root_path if current_admin_user.blank?
   end
+
+  def log_error err
+    logger.error err
+    err.backtrace.each do |l|
+      logger.error " | #{l}"
+    end
+  end
 end
