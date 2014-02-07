@@ -16,5 +16,10 @@ module Kegup
 
     # less-rails gem (default all generators)
     config.app_generators.stylesheet_engine :less
+
+    console do
+      require "pry"
+      config.console = Pry
+    end
   end
 end

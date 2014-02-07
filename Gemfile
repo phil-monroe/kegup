@@ -23,7 +23,7 @@ gem 'twitter-bootswatch-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'unf'
 gem 'unicorn'
-
+gem 'pry', require: false
 
 
 
@@ -43,7 +43,6 @@ end
 
 group :development, :test do
   gem 'letter_opener'
-  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'quiet_assets'
 end

@@ -198,8 +198,6 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pry-rails (0.3.2)
-      pry (>= 0.9.10)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -320,7 +318,7 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-facebook
   pg
-  pry-rails
+  pry
   quiet_assets
   rack-timeout
   rails (= 4.0.2)
