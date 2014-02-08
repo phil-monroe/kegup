@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User, :focus  do
+describe User  do
   it 'can parse a facebook hash' do
     user = User.from_facebook phil_hash
     expect(user).to be_persisted
