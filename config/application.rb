@@ -7,7 +7,7 @@ require 'rails/all'
 Bundler.require(:default, Rails.env)
 I18n.enforce_available_locales = false
 module Kegup
-  GIT_SHA = (ENV['GIT_REF'] || `git describe --always`).chomp
+  GIT_SHA = (ENV['GIT_REF'] || `git describe --always 2> /dev/null`).chomp
   START_TIME = Time.now
 
   class Application < Rails::Application
