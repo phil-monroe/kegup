@@ -1,6 +1,10 @@
 class UsersFavoriteBeersController < ApplicationController
   def index
-    @favorite_beers = current_user.beers_with_favorite_id.load
+    if current_user.present?
+      @favorite_beers = current_user.beers_with_favorite_id.load
+    else
+      redirect_to root_path
+    end
   end
 
   def create
