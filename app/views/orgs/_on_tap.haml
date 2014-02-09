@@ -3,62 +3,63 @@
 - @org.taps.each_slice(3) do |taps|
   .row
   - taps.each do |tap|
-    .col-lg-6
-      .on-tap.panel
-        .panel-heading.text-center
-          - if tap.keg.present?
-            = image_tag(tap.keg.beer.image_url(:large).to_s)
-          - else
-            = image_tag("beer-tap-empty.jpg", size: "200x200")
+    = cache [current_user.present?, @org, 'on-tap', tap ] do
+      .col-lg-6
+        .on-tap.panel
+          .panel-heading.text-center
+            - if tap.keg.present?
+              = image_tag(tap.keg.beer.image_url(:large).to_s)
+            - else
+              = image_tag("beer-tap-empty.jpg", size: "200x200")
 
-        .panel-body
-          - if tap.keg.present?
-            .row
-              .col-lg-3
-                Beer:
-              .col-lg-9.text-right
-                = tap.keg.beer.name
-            .row
-              .col-lg-3
-                Origin:
-              .col-lg-9.text-right
-                = tap.keg.beer.origin
-            .row
-              .col-lg-3
-                Style:
-              .col-lg-9.text-right
-                = tap.keg.beer.style
-            .row
-              .col-lg-3
-                ABV:
-              .col-lg-9.text-right
-                = "#{tap.keg.beer.abv}%"
-            .row
-              .col-lg-3
-                Tapped:
-              .col-lg-9.text-right
-                = format_date(tap.keg.tapped_date)
-            .row.description{'data-toggle' => "popover", 'data-placement' => "bottom", 'data-content' => tap.keg.beer.description}
-              .col-lg-12
-                = truncate(tap.keg.beer.description, length: 50, separator: ' ')
-
-
-            .empty-tap.row
-              .col-lg-12.text-right
-                - if @org.users.include?(current_user)
-                  .tap-empty.btn.btn-danger.btn-xs{ 'data-tap-id' => tap.id, 'data-org-id' => @org.to_param }
-                    Mark Keg as Empty!
-
-          - else
-            .row
-              .col-lg-12.text-center
-                %br
-                Tap Empty...
-                %br
-                Annoy your Kegmeisters!!!
+          .panel-body
+            - if tap.keg.present?
+              .row
+                .col-lg-3
+                  Beer:
+                .col-lg-9.text-right
+                  = tap.keg.beer.name
+              .row
+                .col-lg-3
+                  Origin:
+                .col-lg-9.text-right
+                  = tap.keg.beer.origin
+              .row
+                .col-lg-3
+                  Style:
+                .col-lg-9.text-right
+                  = tap.keg.beer.style
+              .row
+                .col-lg-3
+                  ABV:
+                .col-lg-9.text-right
+                  = "#{tap.keg.beer.abv}%"
+              .row
+                .col-lg-3
+                  Tapped:
+                .col-lg-9.text-right
+                  = format_date(tap.keg.tapped_date)
+              .row.description{'data-toggle' => "popover", 'data-placement' => "bottom", 'data-content' => tap.keg.beer.description}
+                .col-lg-12
+                  = truncate(tap.keg.beer.description, length: 50, separator: ' ')
 
 
+              .empty-tap.row
+                .col-lg-12.text-right
+                  - if @org.users.include?(current_user)
+                    .tap-empty.btn.btn-danger.btn-xs{ 'data-tap-id' => tap.id, 'data-org-id' => @org.to_param }
+                      Mark Keg as Empty!
 
-        .panel-footer.text-center
-          %h4
-            = tap.name
+            - else
+              .row
+                .col-lg-12.text-center
+                  %br
+                  Tap Empty...
+                  %br
+                  Annoy your Kegmeisters!!!
+
+
+
+          .panel-footer.text-center
+            %h4
+              = tap.name
