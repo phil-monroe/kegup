@@ -27,9 +27,11 @@ class Org < ActiveRecord::Base
   end
 
   def suggested_beer
+    beers_table=Beer.arel_table
+
     backlogged_beer_ids = kegs.backlogged.pluck(:beer_id)
     tapped_beer_ids     = taps.joins(:keg).pluck(:beer_id)
-    available_beers     = beers.where('beers.id NOT IN (?)', backlogged_beer_ids + tapped_beer_ids)
+    available_beers     = beers.where(beers_table[:id].not_in(backlogged_beer_ids + tapped_beer_ids))
 
     beer_histogram = available_beers.inject(Hash.new) {|hist, beer| hist[beer] = 0; hist }
     users.includes(:beers).each do |user|
