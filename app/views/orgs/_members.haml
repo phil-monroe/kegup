@@ -13,6 +13,7 @@
       %ul.member-list
         - @org.kegmeisters.each do |user|
           %li
+            = image_tag user.avatar_url, class: 'member-avatar'
             = user.name
 
   .org-members.row
@@ -34,4 +35,6 @@
       %ul.member-list
         - @org.users.each do |user|
           %li
+            = image_tag(user.avatar_url || "small_beer.png", class: 'member-avatar')
+
             = user.name
