@@ -10,14 +10,20 @@
         = link_to 'Remove', users_favorite_beer_path(beer.favorite_beer_id), method: :delete, class: 'btn btn-sm btn-danger membership-delete'
 
   .row
-    .col-lg-4
+    .col-lg-12
       %h3
         Add Beer to Favorites
       %hr
-        .well.text-center
-          = form_for Users::FavoriteBeer.new, html: { role: 'form' }  do |f|
-            %div.form-group
-              = f.collection_select :beer_id, Beer.all, :id, :name
+      .row
+        - if @favorite_beers.count < 3
+          .col-lg-4.col-lg-offset-4.well.text-center
+            = form_for Users::FavoriteBeer.new, html: { role: 'form' }  do |f|
+              %div.form-group
+                = f.label :beer_id, "Choose a favorite beer"
+                = f.collection_select :beer_id, Beer.all, :id, :name
 
-            %div.form-group
-              = f.submit "Add Beer to Favorites!", class: "btn btn-primary btn-block btn-success"
+              %div.form-group
+                = f.submit "Add Beer to Favorites!", class: "btn btn-primary btn-block btn-success"
+        - else
+          .col-lg-12.well.text-center
+            You have reached the maximum number of favorite beers. Please remove one to add another
