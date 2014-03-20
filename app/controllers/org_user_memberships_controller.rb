@@ -35,6 +35,7 @@ class OrgUserMembershipsController < ApplicationController
   end
 
   def membership_params
-    params.require(:org_user_membership).permit!
+    puts params.inspect
+    params.require(:org_user_membership).permit(:org_id, :user_id, :is_kegmeister)
   end
 end

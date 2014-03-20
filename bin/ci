@@ -2,7 +2,7 @@
 
 # Setup
 env
-bundle install --path .bundle
+bundle install --path .bundle -j 4
 
 
 # Run Tests

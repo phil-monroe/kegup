@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :beers, through: :favorite_beers
 
   # Validations ========================================================================================================
-  validates :email, uniqueness: true, format: /.+@.+\..+/i, allow_blank: true
+  validates :email, uniqueness: true, format: /\A.+@.+\..+\z/i, allow_blank: true
 
   # Class Methods ======================================================================================================
   def self.from_facebook auth_hash

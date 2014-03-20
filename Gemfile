@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.1.1'
 
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.4'
 
 # gem 'turbolinks'
 gem 'activeadmin', github: 'gregbell/active_admin'
@@ -12,19 +12,18 @@ gem 'fog'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'memcachier'
+gem 'mini_magick'
 gem 'newrelic_rpm'
 gem 'omniauth-facebook'
 gem 'pg'
+gem 'pry', require: false
 gem 'rack-timeout'
-gem 'rmagick'
 gem 'sass-rails', '~> 4.0.0'
 gem 'therubyracer'
 gem 'twitter-bootswatch-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'unf'
 gem 'unicorn'
-gem 'pry', require: false
-
 
 
 

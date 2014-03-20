@@ -2,6 +2,7 @@
 // Bootswatch
 // loader.js
 
+//= require twitter/bootstrap/transition
 //= require twitter/bootstrap/alert
 //= require twitter/bootstrap/button
 //= require twitter/bootstrap/carousel
