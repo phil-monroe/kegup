@@ -1,0 +1,16 @@
+= form_for org, role: 'form', html: { class: 'form-horizontal' } do |f|
+  .form-group
+    = f.label :name, class: 'col-lg-2 control-label'
+    .col-lg-8
+      = f.text_field :name, class: 'form-control', placeholder: 'Organization Name'
+
+  .form-group
+    = f.label :reminder_email, class: 'col-lg-2 control-label'
+    .col-lg-8
+      = f.text_field :reminder_email, class: 'form-control', type: 'email', placeholder: 'kegmeisters@myorg.com'
+
+  .form-group
+    .col-lg-8.col-lg-offset-2
+      = f.submit 'Save', class: 'btn btn-info'
+      - if org.persisted?
+        = link_to 'Delete', org, data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger"

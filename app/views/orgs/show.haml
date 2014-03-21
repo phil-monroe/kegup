@@ -22,6 +22,8 @@
                   %a{"data-toggle" => "tab", href: "#order-keg"} Manage Kegs
                 %li
                   %a{"data-toggle" => "tab", href: "#manage-users"} Manage Members
+                %li
+                  %a{"data-toggle" => "tab", href: "#manage-org"} Manage Org
 
             #org-tabs.tab-content
               = cache [current_user.present?, @org, 'keg-in-stock'] do
@@ -54,6 +56,10 @@
                 = cache [current_user, @org, 'user_list'] do
                   #manage-users.tab-pane
                     = render 'user_list', org: @org, user_memberships: @org.org_user_memberships.includes(:user), title: "Members"
+
+                = cache [current_user, @org, 'edit_form'] do
+                  #manage-org.tab-pane
+                    = render 'form', org: @org
 
     .col-lg-3
       = render 'members'
