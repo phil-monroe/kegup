@@ -1,5 +1,26 @@
-%h1
-  Orgs
+.head
+  .pull-right
+    %a.btn.btn-success{href: new_org_path}
+      New Org
+  %h1
+    Organizations
 
-- @orgs.each do |org|
-  = link_to org.name, org
+%hr
+
+- @orgs.each_slice(2) do |orgs|
+  .org-row.row
+    - orgs.each do |org|
+      - tap_count, user_count = org.taps.count, org.users.count
+      .well.col-lg-5
+        .join.pull-right
+          - unless current_user.orgs.include?(org)
+            = form_for [org, OrgUserMembership.new(org_id: org.id, user_id: current_user.id)] do |f|
+              = f.hidden_field :org_id
+              = f.hidden_field :user_id
+              = f.submit "Join", class: "btn btn-info btn-sm"
+          -# %a.btn.btn-success
+          -#   Join
+        %h4
+          = link_to org.name, org
+        = "#{pluralize(tap_count, 'tap')} | #{pluralize(user_count, 'user')}"
+      .col-lg-2
