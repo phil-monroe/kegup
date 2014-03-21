@@ -1,0 +1,70 @@
+//= require slate
+//= require orgs
+//= require_self
+
+html{
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  padding-top: 50px;
+}
+
+.beer-table td.mid {
+  vertical-align: middle;
+}
+
+.on-tap.panel {
+  .panel-heading {
+    padding-top: 1em;
+  }
+
+  .panel-body {
+    min-height: 12em;
+  }
+}
+
+
+.org-members.row {
+  margin-top: 3em;
+}
+
+.empty-tap.row {
+  margin-top: 1em;
+}
+
+#org-tabs.tab-content {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.member-list {
+  list-style-type: none;
+  padding-left: 1em;
+}
+
+.row.description {
+  margin-top: 1em;
+}
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 60px;
+}

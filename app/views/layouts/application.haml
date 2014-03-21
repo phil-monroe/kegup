@@ -13,10 +13,10 @@
 
     = csrf_meta_tags
 
-    = stylesheet_link_tag :slate, media: :all, 'data-turbolinks-track' => true
+    = stylesheet_link_tag :application, media: :all, 'data-turbolinks-track' => true
     = yield(:page_stylesheet) if content_for?(:page_stylesheet)
 
-    = javascript_include_tag "slate", 'data-turbolinks-track' => true
+    = javascript_include_tag :application, 'data-turbolinks-track' => true
     = yield(:page_javascript) if content_for?(:page_javascript)
 
   %body
@@ -34,7 +34,3 @@
           = "&copy; Keg Up #{Time.now.year}".html_safe
           %br
           = "#{Kegup::GIT_SHA[0..8]} - #{time_ago_in_words(Kegup::START_TIME)} ago".html_safe
-
-
-
-
