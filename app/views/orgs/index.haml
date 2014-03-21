@@ -11,7 +11,6 @@
 - @orgs.each_slice(2) do |orgs|
   .org-row.row
     - orgs.each do |org|
-      - tap_count, user_count = org.taps.count, org.users.count
       .well.col-lg-5
         - if current_user.present?
           .join.pull-right
@@ -23,5 +22,5 @@
 
         %h4
           = link_to org.name, org
-        = "#{pluralize(tap_count, 'tap')} | #{pluralize(user_count, 'user')}"
+        = "#{pluralize(org.taps.count, 'tap')} | #{pluralize(org.users.count, 'user')}"
       .col-lg-2
