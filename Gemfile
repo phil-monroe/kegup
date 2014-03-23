@@ -56,3 +56,10 @@ group :test do
   gem 'factory_girl'
   gem 'shoulda-matchers'
 end
+
+
+
+group :development do
+  gem 'thor'
+  gem 'nokogiri'
+end
