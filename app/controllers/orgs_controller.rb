@@ -16,7 +16,7 @@ class OrgsController < ApplicationController
     if @org.save
       @org.org_user_memberships.create user: current_user, is_kegmeister: true
       flash[:success] = "Successfully created #{@org.name}"
-      redirect_to org
+      redirect_to @org
     else
       flash[:danger] = "Failed to create org."
       render :new
