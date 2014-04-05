@@ -1,6 +1,6 @@
 class OrgsController < ApplicationController
   def index
-    @orgs = Org.order('updated_at DESC').all
+    @orgs = Org.order('updated_at DESC').load
   end
 
   def show
