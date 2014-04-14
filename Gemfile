@@ -44,6 +44,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'rspec-rails'
   gem 'quiet_assets'
+  gem 'dotenv-rails'
 end
 
 

@@ -96,6 +96,9 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    dotenv (0.10.0)
+    dotenv-rails (0.10.0)
+      dotenv (= 0.10.0)
     erubis (2.7.0)
     excon (0.32.1)
     execjs (2.0.2)
@@ -319,6 +322,7 @@ DEPENDENCIES
   cucumber-rails
   dalli
   database_cleaner
+  dotenv-rails
   factory_girl
   fog
   haml-rails
