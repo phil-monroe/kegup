@@ -1,0 +1,29 @@
+.container
+  .row
+    .col-lg-3
+      %h1
+        = link_to image_tag(@user.high_res_avatar_url(230, 230), size: '230x230'), @user.fb_profile_url
+
+    .col-lg-6
+      %h1
+        = @user.name
+
+      %hr
+
+      %p
+        %h4 Organizations
+
+        %ul.org-list
+          - @user.orgs.each do |org|
+            %li
+              = link_to org.name, org_path(org)
+              - if current_user.kegmeister_for(@org)
+                /  ToDo, find this glphyicon
+                %span.glyphicon.glyphicon-crown
+
+  .row
+    .col-lg-9
+      = cache [@user, 'beers'] do
+        .row{style: 'margin-top: 1.75em'}
+          .col-lg-12
+            = render 'shared/beer_list', beers: @user.beers, title: 'Favorite Beers', edit_btn: true
