@@ -12,6 +12,7 @@ Kegup::Application.routes.draw do
     resources :kegs
   end
 
+  resources :users, only: [:show]
   resources :users_favorite_beers, path: 'my-beers'
 
 

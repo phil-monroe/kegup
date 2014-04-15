@@ -46,4 +46,8 @@ class User < ActiveRecord::Base
   def beers_with_favorite_id
     beers.select('beers.*, users_favorite_beers.id as favorite_beer_id')
   end
+
+  def high_res_avatar_url(width=20,height=20)
+    "http://graph.facebook.com/#{self.fb_id}/picture?width=#{width}&height=#{height}"
+  end
 end
