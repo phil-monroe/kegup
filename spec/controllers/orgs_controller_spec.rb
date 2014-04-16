@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OrgsController, :focus do
+describe OrgsController do
   describe "GET index" do
     it "renders the index template" do
       get :index
