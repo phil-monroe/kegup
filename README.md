@@ -1,4 +1,5 @@
 ### KegUp
+[![Build Status](https://jenkins.philmonroe.com/job/kegup/badge/icon)](https://jenkins.philmonroe.com/job/kegup/)
 
 To start
 
