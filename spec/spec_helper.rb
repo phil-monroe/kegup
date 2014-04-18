@@ -1,5 +1,11 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
+
+require 'simplecov'
+require 'simplecov-rcov'
+SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
+SimpleCov.start 'rails'
+
 require File.expand_path("../../config/environment", __FILE__)
 require 'factory_girl'
 require 'rspec/rails'
@@ -24,4 +30,3 @@ RSpec.configure do |config|
 
   config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
 end
-

@@ -57,6 +57,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'rspec_junit_formatter', require: false
   gem 'fuubar', require: false
+  gem 'simplecov-rcov'
 end
 
 

@@ -20,3 +20,5 @@
 public/uploads
 .DS_Store
 brakeman-output.tabs
+jenkins
+coverage
