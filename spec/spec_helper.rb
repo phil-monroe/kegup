@@ -1,5 +1,27 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
+
+require 'simplecov'
+require 'simplecov-rcov'
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  SimpleCov::Formatter::HTMLFormatter,
+  SimpleCov::Formatter::RcovFormatter,
+]
+SimpleCov.start 'rails' do
+  add_filter '/spec/'
+  add_filter '/config/'
+  add_filter '/vendor/'
+  add_filter '/.bundle/'
+
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Models', 'app/models'
+  add_group 'Helpers', 'app/helpers'
+  add_group 'Mailers', 'app/mailers'
+  add_group 'Views', 'app/views'
+
+  coverage_dir 'jenkins/coverage'
+end if ENV["COVERAGE"]
+
 require File.expand_path("../../config/environment", __FILE__)
 require 'factory_girl'
 require 'rspec/rails'
@@ -24,4 +46,3 @@ RSpec.configure do |config|
 
   config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
 end
-
