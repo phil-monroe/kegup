@@ -15,6 +15,7 @@
 /log/*.log
 /tmp
 .env
+.foreman
 .postgres
 .idea/*
 public/uploads
