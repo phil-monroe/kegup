@@ -1,5 +1,9 @@
+- edit_btn ||= false
+
 %h3
   = title
+  - if edit_btn
+    = link_to 'Edit', users_favorite_beers_path, class: "btn btn-success btn-sm"
 %hr
 - if beers.present?
   %table.table.table-hover.table-stripped.beer-table

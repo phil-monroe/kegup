@@ -15,6 +15,7 @@ gem 'memcachier'
 gem 'mini_magick'
 gem 'newrelic_rpm'
 gem 'omniauth-facebook'
+gem 'cancancan', '~> 1.7'
 gem 'pg'
 gem 'pry', require: false
 gem 'rack-timeout'
@@ -44,6 +45,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'rspec-rails'
   gem 'quiet_assets'
+  gem 'dotenv-rails'
 end
 
 

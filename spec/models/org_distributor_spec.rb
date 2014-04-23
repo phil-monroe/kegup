@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe OrgDistributor do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:org).touch(true) }
+  it { should belong_to(:distributor) }
 end
