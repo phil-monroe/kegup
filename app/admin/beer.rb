@@ -6,6 +6,7 @@ ActiveAdmin.register Beer do
       image_tag beer.image_url(:small).to_s
     end
     column :name
+    column :brewed_by
     column :style
     column :abv
     actions
