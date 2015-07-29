@@ -13,6 +13,14 @@ class Beer < ActiveRecord::Base
   has_many :users, through: :favorite_beers
 
   mount_uploader :image, ImageUploader
+  
+  def name= str
+    self[:name] = str.titleize
+  end
+
+  def brewed_by= str
+    self[:brewed_by] = str.titleize
+  end
 
   def image_url *args
     # Cache will be invalidated every time this Beer is updated or every day
