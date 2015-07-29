@@ -1,6 +1,6 @@
 class Beer < ActiveRecord::Base
   UNKNOWN_STYLE = 'Unknown'
-  STYLES = ['IPA', 'Amber', 'Lager', 'Pale Ale', 'Marzen', 'Altbier', 'American Pale Ale', 'Porter', 'California Common / Steam', 'Amber Ale', 'Witbier', 'Abbey Dubbel', 'Imperial IPA', 'Pale Lager', 'Strong Ale', 'English Pale Ale', 'Marzen / Oktoberfest', 'Bohemian / Czech Pilsener', 'Hefeweizen', 'Cider', 'Belgian Ale', 'Stout', 'Wheat Beer', 'Cream Ale', 'Saison / Farmhouse Ale', 'Kölsch'].sort + [UNKNOWN_STYLE]
+  STYLES = ['IPA', 'Amber', 'Lager', 'Pale Ale', 'Marzen', 'Altbier', 'American Pale Ale', 'Porter', 'California Common / Steam', 'Amber Ale', 'Witbier', 'Abbey Dubbel', 'Imperial IPA', 'Pale Lager', 'Strong Ale', 'English Pale Ale', 'Marzen / Oktoberfest', 'Bohemian / Czech Pilsener', 'Hefeweizen', 'Cider', 'Belgian Ale', 'Stout', 'Wheat Beer', 'Cream Ale', 'Saison / Farmhouse Ale', 'Kölsch', 'Pilsner'].sort + [UNKNOWN_STYLE]
 
   validates :name, presence: true
   validates :style, inclusion: { in: STYLES }
