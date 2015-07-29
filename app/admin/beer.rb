@@ -18,7 +18,7 @@ ActiveAdmin.register Beer do
     f.inputs "Details" do
       f.input :name
       f.input :brewed_by
-      f.input :style
+      f.input :style, as: :select, collection: Beer::STYLES, include_blank: false
       f.input :abv
       f.input :origin
       f.input :remote_image_url
