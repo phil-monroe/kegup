@@ -14,12 +14,9 @@ class Beer < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
   
-  def name= str
-    self[:name] = str.titleize
-  end
-
-  def brewed_by= str
-    self[:brewed_by] = str.titleize
+  before_create do
+    self.name      = self.name.titleize
+    self.brewed_by = self.brewed_by.titleize
   end
 
   def image_url *args
