@@ -40,7 +40,7 @@
           = f.hidden_field :org_id
 
           %div.form-group
-            = f.collection_select :beer_id, org.beers, :id, :name
+            = f.collection_select :beer_id, org.beers, :id, :brewery_and_name
 
           %div.form-group
             = f.submit "Add Keg!", class: "btn btn-primary btn-block"

@@ -14,11 +14,18 @@ class Beer < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
   
+  default_scope -> { order('brewed_by ASC, name ASC') }
+  
   before_create do
     self.name      = self.name.titleize
     self.brewed_by = self.brewed_by.titleize
   end
 
+
+  def brewery_and_name
+    "#{brewed_by} - #{name}"
+  end
+  
   def image_url *args
     # Cache will be invalidated every time this Beer is updated or every day
     Rails.cache.fetch([:images, self, :image_url, *args], expires_in: 1.day) do

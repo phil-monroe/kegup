@@ -20,7 +20,7 @@
             = form_for Users::FavoriteBeer.new, html: { role: 'form' }  do |f|
               %div.form-group
                 = f.label :beer_id, "Choose a favorite beer"
-                = f.collection_select :beer_id, Beer.all, :id, :name
+                = f.collection_select :beer_id, Beer.all, :id, :brewery_and_name
 
               %div.form-group
                 = f.submit "Add Beer to Favorites!", class: "btn btn-primary btn-block btn-success"
