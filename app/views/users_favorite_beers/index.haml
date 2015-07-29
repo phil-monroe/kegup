@@ -15,7 +15,7 @@
         Add Beer to Favorites
       %hr
       .row
-        - if @favorite_beers.count < 3
+        - if @favorite_beers.size < 3
           .col-lg-4.col-lg-offset-4.well.text-center
             = form_for Users::FavoriteBeer.new, html: { role: 'form' }  do |f|
               %div.form-group
