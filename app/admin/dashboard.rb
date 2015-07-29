@@ -12,7 +12,7 @@ ActiveAdmin.register_page "Dashboard" do
   end 
   
   action_item :flush_cache do
-    link_to 'View on site', admin_dashboard_flush_cache_path, method: :post
+    link_to 'Flush Cache', admin_dashboard_flush_cache_path, method: :post
   end
 
   page_action :flush_cache, method: :post do
