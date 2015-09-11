@@ -50,7 +50,7 @@
                     Tap Keg!
                   %br
                   on
-                  = collection_select "keg-#{keg.id}", :tap_id, org.taps.available, :id, :brewery_and_name
+                  = collection_select "keg-#{keg.id}", :tap_id, org.taps.available, :id, :name
           -else
             %td.mid
               = format_date(keg.tapped_date)
